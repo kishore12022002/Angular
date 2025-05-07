@@ -13,7 +13,6 @@ export class UserService {
   activateRoute = inject(ActivatedRoute);
   route = inject(Router);
 
-  constructor() {}
   setUserData(data: any, key: string) {
     const existingUsers = JSON.parse(localStorage.getItem(key) || '[]');
     localStorage.setItem(key, JSON.stringify([...existingUsers, data]));

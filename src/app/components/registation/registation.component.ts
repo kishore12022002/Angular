@@ -106,8 +106,9 @@ export class RegistationComponent {
     };
 
     if (formValue) {
-      const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      // console.log(existingUsers);
+      this.registerService.getUserData('users');
+      const existingUsers = JSON.parse(this.registerService.users);
+      console.log(existingUsers);
       if (existingUsers.some((users: any) => users.email === data.email)) {
         this.tossedMessage('Account already exsist', 'red');
         return;
