@@ -24,7 +24,6 @@ export class LoginComponent {
     password: '',
   };
 
-  // private activate = inject(ActivatedRoute);
   private route = inject(Router);
   private auth = inject(AuthService);
 
