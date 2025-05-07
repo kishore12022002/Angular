@@ -1,0 +1,48 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.validation {
+  width: 450px;
+  height: 25px;
+  color: red;
+}
+
+.validation-pass {
+  width: 450px;
+  min-height: 25px;
+
+  color: red;
+}
+
+.custom-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+  font-weight: 500;
+}
+
+.green {
+  background-color: #28e62e;
+}
+
+.red {
+  background-color: #ff1100;
+}
+.yellow {
+  background-color: #ffbb00;
+}

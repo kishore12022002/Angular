@@ -1,0 +1,15 @@
+::ng-deep table.mat-table {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-mdc-table {
+  background-color: #0075b0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f7f9fc;
+}

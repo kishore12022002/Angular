@@ -1,0 +1,199 @@
+<div
+  class="container d-flex justify-content-center align-items-center min-vh-100"
+>
+  <div class="card shadow p-4" style="width: 100%; max-width: 500px">
+    <h3 class="text-center mb-4">Student Registration</h3>
+    <form [formGroup]="form" (ngSubmit)="onsubmit()">
+      <div>
+        <label class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Your Name"
+          formControlName="name"
+          required
+        />
+        <div class="validation">
+          <small
+            *ngIf="
+              form.get('name')?.hasError('required') &&
+              form.get('name')?.touched
+            "
+            >*Name is required.</small
+          >
+          <small *ngIf="form.get('name')?.hasError('pattern')"
+            >*Enter a Vaild Name. (Special Character And Numbers are Not
+            Allowed).</small
+          >
+        </div>
+      </div>
+
+      <div>
+        <label class="form-label">Age</label>
+        <input
+          type="number"
+          class="form-control age"
+          placeholder="Enter Your Age"
+          formControlName="age"
+          required
+        />
+        <div class="validation">
+          <small
+            *ngIf="
+              form.get('age')?.hasError('required') && form.get('age')?.touched
+            "
+            >*Age is required.</small
+          >
+          <small *ngIf="form.get('age')?.hasError('min')">*Age is min 1.</small>
+          <small *ngIf="form.get('age')?.hasError('max')"
+            >*Age is min 99.</small
+          >
+        </div>
+      </div>
+
+      <div>
+        <label class="form-label">Gender</label>
+        <select class="form-control" formControlName="gender" required>
+          <option value="" disabled selected>Select Your Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="validation">
+          <small
+            *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched"
+            >*Gender is required.</small
+          >
+        </div>
+      </div>
+
+      <div>
+        <label class="form-label">Mobile Number</label>
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Enter Mobile Number"
+          formControlName="mnumber"
+          required
+        />
+        <div class="validation">
+          <small
+            *ngIf="
+              form.get('mnumber')?.hasError('required') &&
+              form.get('mnumber')?.touched
+            "
+            >*Mobile Number is required.</small
+          >
+          <small
+            *ngIf="
+              (form.get('mnumber')?.hasError('minlength') ||
+                form.get('mnumber')?.hasError('maxlength')) &&
+              form.get('mnumber')?.touched
+            "
+            >*Mobile number must be 10 Digit only.</small
+          >
+        </div>
+      </div>
+
+      <div>
+        <label class="form-label">Email ID</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter Email"
+          formControlName="email"
+        />
+        <div class="validation">
+          <small
+            *ngIf="
+              form.get('email')?.hasError('required') &&
+              form.get('email')?.touched
+            "
+            >*Email id is required.</small
+          >
+          <small
+            *ngIf="
+              form.get('email')?.hasError('email') && form.get('email')?.touched
+            "
+            >*Enter a Valid Email Id.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-row" formGroupName="password">
+        <div>
+          <label class="form-label">Enter Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter Password"
+            formControlName="pass"
+            required
+          />
+          <div class="validation-pass">
+            <small
+              *ngIf="
+                form.get('password.pass')?.hasError('required') &&
+                form.get('password.pass')?.touched
+              "
+              >*Password is required.</small
+            >
+            <small
+              *ngIf="
+                form.get('password.pass')?.hasError('minlength') &&
+                form.get('password.pass')?.touched
+              "
+              >*Password must have minimum length of 8.</small
+            >
+            <small
+              *ngIf="
+                form.get('password.pass')?.hasError('pattern') &&
+                form.get('password.pass')?.touched
+              "
+              >*Password must contain atleast one spicical Character ($!%*?&),
+              atleast one numaric, atleast one Alphabet.</small
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Re-enter Password"
+            formControlName="cpassword"
+            required
+          />
+          <div class="validation">
+            <small
+              *ngIf="
+                form.get('password.cpassword')?.hasError('required') &&
+                form.get('password.cpassword')?.touched
+              "
+              >*Confim Password is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-secondary" type="button" routerLink="/login">
+          Login
+        </button>
+      </div>
+    </form>
+    <div
+      class="custom-toast"
+      [ngClass]="{
+        green: tossedMessageType === 'green',
+        red: tossedMessageType === 'red',
+        yellow: tossedMessageType === 'yellow'
+      }"
+      *ngIf="showTossed"
+    >
+      {{ tossedMessagestr }}
+    </div>
+  </div>
+</div>
