@@ -58,7 +58,6 @@ export class LoginComponent {
     });
     console.log(this.users);
 
-    // const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
     if (
       this.users.some(
         (users: any) =>
