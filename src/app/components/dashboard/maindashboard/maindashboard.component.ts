@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-maindashboard',
@@ -12,15 +13,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MaindashboardComponent {
   activateroute = inject(ActivatedRoute);
+  userservice = inject(UserService);
 
   displayedColumns: string[] = ['name', 'age', 'gender', 'mnumber', 'email'];
   users: any[] = [];
 
   ngOnInit() {
-    // console.log(this.activateroute);
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    this.users = existingUsers;
-    // console.log(this.users[0].name);
-    // console.log(this.users);
+    this.userservice.getUserData('users');
+    this.users = JSON.parse(this.userservice.users || '[]');
   }
 }

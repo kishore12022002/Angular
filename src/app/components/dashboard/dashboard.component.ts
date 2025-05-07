@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class DashboardComponent {
   activateroute = inject(ActivatedRoute);
+  userservice = inject(UserService);
 
   displayedColumns: string[] = ['name', 'age', 'gender', 'mnumber', 'email'];
   email = '';
@@ -28,20 +30,10 @@ export class DashboardComponent {
     this.activateroute.queryParams.subscribe((param) => {
       this.email = param['email'];
     });
-    console.log(this.activateroute);
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    // this.user = existingUsers.filter((user: any) => user.email === this.email);
-    this.users = existingUsers;
-    // console.log(this.users[0].name);
-    // console.log(this.email);
-    this.getData();
-  }
-
-  getData() {
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    this.selectedUser = existingUsers.filter(
+    this.userservice.getUserData('users');
+    this.users = JSON.parse(this.userservice.users || '[]');
+    this.selectedUser = this.users.filter(
       (user: any) => user.email === this.email
     );
-    console.log(this.selectedUser);
   }
 }

@@ -23,7 +23,6 @@ export class ContectUsComponent {
       email: this.email,
       message: this.message,
     };
-    const existingUsers = JSON.parse(localStorage.getItem('contectUs') || '[]');
     this.service.setUserData(data, 'contectUs');
   }
 }
